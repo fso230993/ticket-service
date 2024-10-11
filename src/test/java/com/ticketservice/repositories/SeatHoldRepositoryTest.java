@@ -28,7 +28,7 @@ class SeatHoldRepositoryTest {
 
 
     @Test
-    void saveSeatHoldSuccess() {
+    void saveSeatHoldSuccess() throws IOException {
         SeatHold expectedSeatHold = new SeatHold();
         when(seatHoldRepository.saveSeatHold(any())).thenReturn(expectedSeatHold);
 
@@ -38,7 +38,7 @@ class SeatHoldRepositoryTest {
     }
 
     @Test
-    void saveSeatHoldFail() {
+    void saveSeatHoldFail() throws IOException {
         when(seatHoldRepository.saveSeatHold(any())).thenThrow(new RuntimeException());
 
         assertThrows(RuntimeException.class, () -> seatHoldRepository.saveSeatHold(new SeatHold()));

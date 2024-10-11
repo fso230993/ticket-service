@@ -52,7 +52,7 @@ private final SeatReservationRepository seatReservationRepository;
     private List<Seat> getBestSeatsAvailable(int numSeats, Stream<Seat> seatStream){
         Map<Integer,List<Seat>> map = seatStream
                 .collect(Collectors.groupingBy(Seat::getVenueLevel))
-                .entrySet().stream().filter( entry -> entry.getValue().size() > numSeats)
+                .entrySet().stream().filter( entry -> entry.getValue().size() >= numSeats)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         List<Seat> availableSeats = map.values().stream().flatMap(List::stream).toList();
 

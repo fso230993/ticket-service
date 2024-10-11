@@ -18,23 +18,18 @@ import static com.ticketservice.constants.TicketConstants.SEATHOLD_PATH;
 public class SeatHoldRepository {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public SeatHold saveSeatHold(SeatHold seatHold) {
-        try {
+    public SeatHold saveSeatHold(SeatHold seatHold) throws IOException {
+        String fileName = String.format(SEATHOLD_PATH, seatHold.getSeatHoldId());
             objectMapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(new File(SEATHOLD_PATH
-                            .replace("${seatHoldId}",String.valueOf(seatHold.getSeatHoldId()))), seatHold);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                    .writeValue(new File(fileName), seatHold);
         return seatHold;
     }
 
-    public boolean holdIdExists(int seatHoldId) throws IOException {
-        return objectMapper.readValue(new File(SEATHOLD_PATH.replace("${seatHoldId}",String.valueOf(seatHoldId))), new TypeReference<SeatHold>() {}) != null;
+    public boolean holdIdExists(int seatHoldId) {
+        return new File(String.format(SEATHOLD_PATH, seatHoldId)).exists();
     }
     public SeatHold getSeatHold(int seatHoldId) throws IOException {
-        return objectMapper.readValue(new File(SEATHOLD_PATH.replace("${seatHoldId}",String.valueOf(seatHoldId))), new TypeReference<SeatHold>() {});
+        return objectMapper.readValue(new File(String.format(SEATHOLD_PATH, seatHoldId)), new TypeReference<SeatHold>() {});
     }
 
     public SeatHold getSeatHold(File fileName) throws IOException {
@@ -46,7 +41,7 @@ public class SeatHoldRepository {
     }
 
     public void deleteReservedHold(int seatHoldId){
-        new File(SEATHOLD_PATH.replace("${seatHoldId}",String.valueOf(seatHoldId))).delete();
+        new File(String.format(SEATHOLD_PATH, seatHoldId)).delete();
     }
     public List<Seat> verifyIfSeatHoldExpired() throws IOException {
         File folder = new File("src/main/resources/data/");

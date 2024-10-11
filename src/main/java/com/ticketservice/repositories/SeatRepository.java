@@ -28,7 +28,10 @@ public class SeatRepository {
 
     public void updateSeatStatus(List<Seat> selectedSeats) throws IOException {
             List<Seat> seats = getAllSeatsAvailable();
-            seats.removeAll(selectedSeats);
+            seats = seats.stream()
+                    .filter(s -> !selectedSeats.contains(s))
+                    .toList();
+
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(SEATS_PATH), seats);
     }
 
