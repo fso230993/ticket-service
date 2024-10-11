@@ -27,7 +27,7 @@ public class TicketServiceController {
     }
 
     @PostMapping("/findAndHoldSeats")
-    public SeatHold findAndHoldSeats(@RequestBody ReservationRequest reservationRequest){
+    public SeatHold findAndHoldSeats(@RequestBody ReservationRequest reservationRequest) {
         try {
             return this.ticketService.findAndHoldSeats(reservationRequest);
         } catch (IOException | NoTicketsFoundException e) {
@@ -40,7 +40,7 @@ public class TicketServiceController {
         try {
             return this.ticketService.reserveSeats(seatHoldId, customerEmail);
         } catch (IOException e) {
-           return null;
+            return null;
         }
     }
 }

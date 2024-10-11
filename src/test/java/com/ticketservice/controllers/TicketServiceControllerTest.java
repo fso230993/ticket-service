@@ -162,7 +162,7 @@ class TicketServiceControllerTest {
         int holdId = 0;
         String customerEmail = "test@gmail.com";
         String reservationCode = "ABCDE";
-        when(ticketService.reserveSeats(holdId,customerEmail)).thenReturn(reservationCode);
+        when(ticketService.reserveSeats(holdId, customerEmail)).thenReturn(reservationCode);
 
         String actualResult = ticketServiceController.reserveSeats(holdId, customerEmail);
         assertEquals(reservationCode, actualResult);
@@ -173,7 +173,7 @@ class TicketServiceControllerTest {
         int holdId = 0;
         String customerEmail = "test@gmail.com";
         String expectedCode = "";
-        when(ticketService.reserveSeats(holdId,customerEmail)).thenReturn(expectedCode);
+        when(ticketService.reserveSeats(holdId, customerEmail)).thenReturn(expectedCode);
 
         String actualResult = ticketServiceController.reserveSeats(holdId, customerEmail);
         assertEquals(expectedCode, actualResult);
@@ -184,7 +184,7 @@ class TicketServiceControllerTest {
         int holdId = 0;
         String customerEmail = "test@gmail.com";
         String expectedCode = "";
-        when(ticketService.reserveSeats(holdId,customerEmail)).thenReturn(expectedCode);
+        when(ticketService.reserveSeats(holdId, customerEmail)).thenReturn(expectedCode);
 
         String actualResult = ticketServiceController.reserveSeats(holdId, customerEmail);
         assertEquals(expectedCode, actualResult);
@@ -194,7 +194,7 @@ class TicketServiceControllerTest {
     void reserveSeatsHoldFail() throws IOException {
         int holdId = 0;
         String customerEmail = "test@gmail.com";
-        when(ticketService.reserveSeats(holdId,customerEmail)).thenThrow(new IOException());
+        when(ticketService.reserveSeats(holdId, customerEmail)).thenThrow(new IOException());
 
         String actualResult = ticketServiceController.reserveSeats(holdId, customerEmail);
         assertNull(actualResult);

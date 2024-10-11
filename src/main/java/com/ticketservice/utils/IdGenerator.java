@@ -17,20 +17,20 @@ public class IdGenerator {
         IdGenerator.generatedConfirmationCodes.add(generatedConfirmationCodes);
     }
 
-    public static int generateSeatHoldId(){
-        return seatHoldId ++;
+    public static int generateSeatHoldId() {
+        return seatHoldId++;
     }
 
-   public static String generateConfirmationCode(){
+    public static String generateConfirmationCode() {
         StringBuilder stB = new StringBuilder();
         Random random = new Random();
         int min = 'A';
         int max = 'Z';
 
-        for(int i = 0; i < confirmationCodeLength ; i ++){
+        for (int i = 0; i < confirmationCodeLength; i++) {
             int randomNum = random.nextInt(max - min) + min;
-            stB.append((char)randomNum);
+            stB.append((char) randomNum);
         }
         return stB.toString();
-   }
+    }
 }

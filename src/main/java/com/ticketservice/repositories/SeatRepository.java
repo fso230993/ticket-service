@@ -17,22 +17,24 @@ public class SeatRepository {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public List<Seat> getAllSeatsAvailable() throws IOException {
-        return objectMapper.readValue(new File(SEATS_PATH), new TypeReference<List<Seat>>() {})
+        return objectMapper.readValue(new File(SEATS_PATH), new TypeReference<List<Seat>>() {
+                })
                 .stream()
                 .filter(seat -> seat.getSeatStatus().equals(SeatStatus.AVAILABLE))
                 .toList();
     }
+
     public void saveSeats(List<Seat> seats) throws IOException {
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(SEATS_PATH), seats);
     }
 
     public void updateSeatStatus(List<Seat> selectedSeats) throws IOException {
-            List<Seat> seats = getAllSeatsAvailable();
-            seats = seats.stream()
-                    .filter(s -> !selectedSeats.contains(s))
-                    .toList();
+        List<Seat> seats = getAllSeatsAvailable();
+        seats = seats.stream()
+                .filter(s -> !selectedSeats.contains(s))
+                .toList();
 
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(SEATS_PATH), seats);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(SEATS_PATH), seats);
     }
 
 }

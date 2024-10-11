@@ -45,7 +45,7 @@ class SeatHoldRepositoryTest {
     }
 
     @Test
-    void holdIdNotExists() throws IOException {
+    void holdIdNotExists() {
         when(seatHoldRepository.holdIdExists(anyInt())).thenReturn(false);
 
         boolean actualResult = seatHoldRepository.holdIdExists(1);
@@ -53,7 +53,7 @@ class SeatHoldRepositoryTest {
     }
 
     @Test
-    void holdIdExists() throws IOException {
+    void holdIdExists() {
         when(seatHoldRepository.holdIdExists(anyInt())).thenReturn(true);
 
         boolean actualResult = seatHoldRepository.holdIdExists(1);
@@ -61,7 +61,7 @@ class SeatHoldRepositoryTest {
     }
 
     @Test
-    void holdIdExistsFails() throws IOException {
+    void holdIdExistsFails() {
         when(seatHoldRepository.holdIdExists(anyInt())).thenThrow(new RuntimeException());
 
         assertThrows(RuntimeException.class, () -> seatHoldRepository.holdIdExists(1));

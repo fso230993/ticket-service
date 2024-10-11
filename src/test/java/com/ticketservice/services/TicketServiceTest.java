@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ class TicketServiceTest {
         int expectedCount = availableSeats.size() * 2;
 
         int count = ticketService.numSeatsAvailable(Optional.empty());
-        assertEquals(expectedCount,count);
+        assertEquals(expectedCount, count);
     }
 
     @Test
@@ -71,7 +72,7 @@ class TicketServiceTest {
         int expectedCount = availableSeats.size() * 2;
 
         int count = ticketService.numSeatsAvailable(Optional.of(1));
-        assertEquals(expectedCount,count);
+        assertEquals(expectedCount, count);
     }
 
     @Test
@@ -94,7 +95,7 @@ class TicketServiceTest {
         when(seatHoldRepository.saveSeatHold(any())).thenReturn(expectedSeatHold);
 
         SeatHold actualResult = ticketService.findAndHoldSeats(reservationRequest);
-        assertEquals(expectedSeatHold,actualResult);
+        assertEquals(expectedSeatHold, actualResult);
     }
 
     @Test
@@ -119,7 +120,7 @@ class TicketServiceTest {
         when(seatHoldRepository.saveSeatHold(any())).thenReturn(expectedSeatHold);
 
         SeatHold actualResult = ticketService.findAndHoldSeats(reservationRequest);
-        assertEquals(expectedSeatHold,actualResult);
+        assertEquals(expectedSeatHold, actualResult);
     }
 
     @Test
