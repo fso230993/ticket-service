@@ -1,0 +1,26 @@
+[ {
+  "seatId" : 20,
+  "venueLevel" : 2,
+  "seatStatus" : "AVAILABLE",
+  "price" : 850.0
+}, {
+  "seatId" : 36,
+  "venueLevel" : 3,
+  "seatStatus" : "AVAILABLE",
+  "price" : 720.0
+}, {
+  "seatId" : 238,
+  "venueLevel" : 9,
+  "seatStatus" : "AVAILABLE",
+  "price" : 50.0
+}, {
+  "seatId" : 597,
+  "venueLevel" : 10,
+  "seatStatus" : "AVAILABLE",
+  "price" : 45.0
+}, {
+  "seatId" : 15,
+  "venueLevel" : 1,
+  "seatStatus" : "AVAILABLE",
+  "price" : 1200.0
+} ]
