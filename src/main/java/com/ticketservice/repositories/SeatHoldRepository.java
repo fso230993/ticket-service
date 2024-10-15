@@ -20,29 +20,33 @@ public class SeatHoldRepository {
 
     public SeatHold saveSeatHold(SeatHold seatHold) throws IOException {
         String fileName = String.format(SEATHOLD_PATH, seatHold.getSeatHoldId());
-            objectMapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(new File(fileName), seatHold);
+        objectMapper.writerWithDefaultPrettyPrinter()
+                .writeValue(new File(fileName), seatHold);
         return seatHold;
     }
 
     public boolean holdIdExists(int seatHoldId) {
         return new File(String.format(SEATHOLD_PATH, seatHoldId)).exists();
     }
+
     public SeatHold getSeatHold(int seatHoldId) throws IOException {
-        return objectMapper.readValue(new File(String.format(SEATHOLD_PATH, seatHoldId)), new TypeReference<SeatHold>() {});
+        return objectMapper.readValue(new File(String.format(SEATHOLD_PATH, seatHoldId)), new TypeReference<SeatHold>() {
+        });
     }
 
     public SeatHold getSeatHold(File fileName) throws IOException {
-        return objectMapper.readValue(fileName, new TypeReference<SeatHold>() {});
+        return objectMapper.readValue(fileName, new TypeReference<SeatHold>() {
+        });
     }
 
-    private void deleteExpiredHolds(List<File> expiredFiles){
+    private void deleteExpiredHolds(List<File> expiredFiles) {
         expiredFiles.forEach(File::delete);
     }
 
-    public void deleteReservedHold(int seatHoldId){
+    public void deleteReservedHold(int seatHoldId) {
         new File(String.format(SEATHOLD_PATH, seatHoldId)).delete();
     }
+
     public List<Seat> verifyIfSeatHoldExpired() throws IOException {
         File folder = new File("src/main/resources/data/");
         File[] filesList = folder.listFiles(pathname -> pathname.getName().contains("seathold"));
@@ -51,7 +55,7 @@ public class SeatHoldRepository {
 
         for (File file : filesList) {
             SeatHold seatHold = getSeatHold(file);
-            if(seatHold.getHoldEndDate().before(new Date())){
+            if (seatHold.getHoldEndDate().before(new Date())) {
                 seatList.addAll(seatHold.getSelectedSeats());
                 expiredHolds.add(file);
             }
